@@ -1,0 +1,7 @@
+{
+  "name": "record-meeting",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
