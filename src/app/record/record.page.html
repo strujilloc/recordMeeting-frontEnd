@@ -29,7 +29,19 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        {{data.meetingId}} {{data.userId}}
+        <ion-card>
+          <ion-card-header
+            >Is recording?: {{isRecording}}<br />
+            This is what I understood...</ion-card-header
+          >
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let match of matches">
+                {{match}}
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -37,12 +49,20 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-title>
-      <div class="ion-margin-vertical">
-        <ion-button (click)="sendData()">
-          <ion-icon name="stop-circle-outline"></ion-icon
-        ></ion-button>
-      </div>
-    </ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="getPermissions()">Get Permision</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="startRecording()"> Record</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="stopRecording()" *ngIf="isIos()">
+            Stop</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>
