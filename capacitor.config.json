@@ -1,8 +1,12 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.recordmeeting.ionic",
   "appName": "record-meeting",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
-  "cordova": {}
+  "cordova": {},
+  "server": {
+    "url": "http://localhost:8100",
+    "cleartext": true
+  }
 }

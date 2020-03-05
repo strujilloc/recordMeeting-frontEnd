@@ -37,7 +37,6 @@ export class RecordPage implements OnInit {
         this.speechRecognition.requestPermission();
       }
     });
-    this.isRecording = true;
   }
   startRecording() {
     let options = {
@@ -46,6 +45,7 @@ export class RecordPage implements OnInit {
     this.speechRecognition.startListening(options).subscribe(matches => {
       this.matches = matches;
     });
+    this.isRecording = true;
   }
   stopRecording() {
     this.speechRecognition.stopListening().then(() => {
