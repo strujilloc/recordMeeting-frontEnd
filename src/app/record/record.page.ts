@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Message } from "../message.model";
 import { Platform } from "@ionic/angular";
 import { SpeechRecognition } from "@ionic-native/speech-recognition/ngx";
@@ -13,37 +13,51 @@ export class RecordPage implements OnInit {
   inputUser: string;
   private data: Message = {
     meetingId: "",
-    userId: ""
+    userId: "",
+    scriptMsg: ""
   };
 
-  matches: String[];
+  matches: string[];
   isRecording = false;
 
   constructor(
     private plt: Platform,
-    private speechRecognition: SpeechRecognition
+    private speechRecognition: SpeechRecognition,
+    private changeDetectoreRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {}
 
   sendData() {
-    this.data = { meetingId: this.inputMeeting, userId: this.inputUser };
+    this.data = {
+      meetingId: this.inputMeeting,
+      userId: this.inputUser,
+      scriptMsg: this.matches.shift()
+    };
     console.log(this.data);
   }
 
   getPermissions() {
+    /* this.speechRecognition.hasPermission().then((hasPermission: boolean) => {
+      if (!hasPermission) {
+        this.speechRecognition.requestPermission();
+      }
+    }); */
+  }
+  startRecording() {
+    let options = {
+      language: "en-US",
+      matches: 1
+    };
     this.speechRecognition.hasPermission().then((hasPermission: boolean) => {
       if (!hasPermission) {
         this.speechRecognition.requestPermission();
       }
     });
-  }
-  startRecording() {
-    let options = {
-      language: "en-US"
-    };
+
     this.speechRecognition.startListening(options).subscribe(matches => {
       this.matches = matches;
+      this.changeDetectoreRef.detectChanges();
     });
     this.isRecording = true;
   }
