@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      ><div class="ion-margin-vertical"><h1>Display Script</h1></div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header> Data get... <br /> </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let transcript of loadedTranscripts">
+                <h2>{{transcript.meetingId}}</h2>
+                <br />
+                <h3>{{transcript.userId}}</h3>
+                <br />
+                <p>{{transcript.scriptMsg}}</p>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="getData()">Get Data </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
