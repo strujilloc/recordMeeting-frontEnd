@@ -33,11 +33,7 @@
         <ion-card>
           <ion-card-header> Transcription... <br /> </ion-card-header>
           <ion-card-content>
-            <h2>{{loadedMeeting.meetingId}}</h2>
-            <br />
-            <h3>{{loadedMeeting.userId}}</h3>
-            <br />
-            <p>{{loadedMeeting.scriptMsg}}</p>
+            <p>{{loadedDataMsg.scriptMsg}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -50,10 +46,10 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-button (click)="getData()">Get Data </ion-button>
+          <ion-button (click)="getByUser()">Get by User id </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button (click)="getMeeting()">Get Meeting </ion-button>
+          <ion-button (click)="getByMeeting()">Get by Meeting id</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

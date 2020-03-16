@@ -8,7 +8,7 @@ import { TranscriptService } from "../transcript.service";
 })
 export class DisplayPage implements OnInit {
   loadedTranscripts: any = [];
-  loadedMeeting: any = "";
+  loadedDataMsg: any = "";
   inputMeeting: string = "";
   inputUser: string = "";
 
@@ -23,16 +23,24 @@ export class DisplayPage implements OnInit {
     });
   }
 
-  getMeeting() {
+  getByMeeting() {
     this.transcriptService.getTranscripts().then((data: Array<any>) => {
-      this.loadedMeeting = data.find(elem => {
-        return elem.userId == "user02";
+      this.loadedDataMsg = data.find(elem => {
+        return elem.meetingId == this.inputMeeting;
       });
-      console.log(
-        data.find(elem => {
-          return elem.userId == "user02";
-        })
-      );
+      if (this.loadedDataMsg == null) {
+        this.loadedDataMsg = "data not found";
+      }
+    });
+  }
+  getByUser() {
+    this.transcriptService.getTranscripts().then((data: Array<any>) => {
+      this.loadedDataMsg = data.find(elem => {
+        return elem.userId == this.inputUser;
+      });
+      if (this.loadedDataMsg == null) {
+        this.loadedDataMsg = "data not found";
+      }
     });
   }
 }
