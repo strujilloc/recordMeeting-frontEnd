@@ -13,18 +13,31 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-item>
+          <ion-label position="floating">Meeting ID</ion-label>
+          <ion-input type="text" [(ngModel)]="inputMeeting"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">User ID</ion-label>
+          <ion-input type="text" [(ngModel)]="inputUser"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
         <ion-card>
-          <ion-card-header> Data get... <br /> </ion-card-header>
+          <ion-card-header> Transcription... <br /> </ion-card-header>
           <ion-card-content>
-            <ion-list>
-              <ion-item *ngFor="let transcript of loadedTranscripts">
-                <h2>{{transcript.meetingId}}</h2>
-                <br />
-                <h3>{{transcript.userId}}</h3>
-                <br />
-                <p>{{transcript.scriptMsg}}</p>
-              </ion-item>
-            </ion-list>
+            <h2>{{loadedMeeting.meetingId}}</h2>
+            <br />
+            <h3>{{loadedMeeting.userId}}</h3>
+            <br />
+            <p>{{loadedMeeting.scriptMsg}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -38,6 +51,9 @@
       <ion-row>
         <ion-col>
           <ion-button (click)="getData()">Get Data </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="getMeeting()">Get Meeting </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
