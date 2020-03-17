@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Message } from "../message.model";
 import { Platform } from "@ionic/angular";
 import { SpeechRecognition } from "@ionic-native/speech-recognition/ngx";
+import { TranscriptService } from "../transcript.service";
 
 @Component({
   selector: "app-record",
@@ -23,7 +24,8 @@ export class RecordPage implements OnInit {
   constructor(
     private plt: Platform,
     private speechRecognition: SpeechRecognition,
-    private changeDetectoreRef: ChangeDetectorRef
+    private changeDetectoreRef: ChangeDetectorRef,
+    private transcriptService: TranscriptService
   ) {}
 
   ngOnInit() {}
@@ -34,6 +36,10 @@ export class RecordPage implements OnInit {
       userId: this.inputUser,
       scriptMsg: this.matches.shift()
     };
+    this.transcriptService.postTranscripts(this.data).then(newTranscript => {
+      console.log(newTranscript);
+    });
+
     console.log(this.data);
   }
 
